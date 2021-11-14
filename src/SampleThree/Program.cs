@@ -95,14 +95,14 @@ Task listernerTwoGroupC = Task.Run(async () =>
 
 
 // Publisher
-//for (int i = 0; i < 10; i++)
-//{
-//    await db.StreamAddAsync(redisKeyA,
-//        new NameValueEntry[] {
-//            new NameValueEntry("message", $"I'm [{i}] message in group A"),
-//            new NameValueEntry("SecondsInTime", DateTime.UtcNow.Second)
-//        });
-//}
+for (int i = 0; i < 10; i++)
+{
+    await db.StreamAddAsync(redisKeyA,
+        new NameValueEntry[] {
+            new NameValueEntry("message", $"I'm [{i}] message in group A"),
+            new NameValueEntry("SecondsInTime", DateTime.UtcNow.Second)
+        });
+}
 
 
 Console.Read();
