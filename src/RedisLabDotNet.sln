@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleTwo", "SampleTwo\Samp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleThree", "SampleThree\SampleThree.csproj", "{232FF409-E449-4A73-A8E3-E8F4D0DF8980}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleClients", "..\SampleClients\SampleClients.csproj", "{D50105B6-A5F1-4C15-9757-582F6C05A076}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleClients", "..\SampleClients\SampleClients.csproj", "{D50105B6-A5F1-4C15-9757-582F6C05A076}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleClientsParallel", "SimpleClientsParallel\SimpleClientsParallel.csproj", "{0CF77340-1D0F-4F4F-B86E-16B6893572C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalClients", "..\ExternalClients\ExternalClients.csproj", "{21BD0293-9A20-4B00-84DF-0922E542DA08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{D50105B6-A5F1-4C15-9757-582F6C05A076}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D50105B6-A5F1-4C15-9757-582F6C05A076}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D50105B6-A5F1-4C15-9757-582F6C05A076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CF77340-1D0F-4F4F-B86E-16B6893572C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CF77340-1D0F-4F4F-B86E-16B6893572C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CF77340-1D0F-4F4F-B86E-16B6893572C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CF77340-1D0F-4F4F-B86E-16B6893572C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21BD0293-9A20-4B00-84DF-0922E542DA08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21BD0293-9A20-4B00-84DF-0922E542DA08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21BD0293-9A20-4B00-84DF-0922E542DA08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21BD0293-9A20-4B00-84DF-0922E542DA08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
