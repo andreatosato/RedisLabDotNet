@@ -1,4 +1,5 @@
 ﻿using StackExchange.Redis;
+using System.Security.Cryptography;
 
 IConnectionMultiplexer redis = ConnectionMultiplexer.Connect(
         new ConfigurationOptions
@@ -9,32 +10,14 @@ var db = redis.GetDatabase();
 var key = "MultiClient";
 var fieldMessage = "Message";
 var fieldRandomTemperature = "Message";
-var randomizer = new Random();
-int clientsNumber = 2000;
-int serversNumber = 100;
-Thread[] clients = new Thread[clientsNumber];
-Thread[] servers = new Thread[serversNumber];
+int clientsNumber = 100;
+int serversNumber = 10;
 
 for (int i = 0; i < serversNumber; i++)
-    servers[i] = new Thread(async () => await SimulateServer());
+    new Thread(async () => await SimulateServer()).Start();
 
 for (int i = 0; i < clientsNumber; i++)
-    clients[i] = new Thread(async () => await SimulateClient());
-
-
-for (int j = 0; j < serversNumber; j++)
-    servers[j].Start();
-for (int k = 0; k < serversNumber; k++)
-    servers[k].Join();
-
-// Start all threads, passing to each thread its app domain.
-for (int j = 0; j < clientsNumber; j++)
-    clients[j].Start();
-// Wait for the threads to finish.
-for (int k = 0; k < clientsNumber; k++)
-    clients[k].Join();
-
-
+    new Thread(async () => await SimulateClient()).Start();
 
 async Task SimulateClient()
 {
@@ -44,10 +27,10 @@ async Task SimulateClient()
     {   
         await dbThreadConnection.StreamAddAsync(key, new NameValueEntry[] {
             new NameValueEntry(fieldMessage, $"{i} - Thread: {Thread.CurrentThread.ManagedThreadId}"),
-            new NameValueEntry(fieldRandomTemperature, randomizer.NextDouble())
+            new NameValueEntry(fieldRandomTemperature, RandomNumberGenerator.GetInt32(-10, 40))
         });
         i++;
-        await Task.Delay(100);
+
     }
 }
 
