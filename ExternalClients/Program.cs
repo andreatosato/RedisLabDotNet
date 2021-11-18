@@ -4,7 +4,9 @@ using System.Security.Cryptography;
 IConnectionMultiplexer redis = ConnectionMultiplexer.Connect(
         new ConfigurationOptions
         {
-            EndPoints = { "20.203.217.149:6379" }
+            //EndPoints = { "20.203.217.149:6379" }
+             EndPoints = { "localhost:6379" },
+            Password = "my_master_password"
         });
 
 Console.WriteLine("Connected");

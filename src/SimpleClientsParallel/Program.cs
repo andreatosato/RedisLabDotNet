@@ -4,11 +4,14 @@ using System.Security.Cryptography;
 IConnectionMultiplexer redis = ConnectionMultiplexer.Connect(
         new ConfigurationOptions
         {
-            EndPoints = { "localhost:6379" }
+            EndPoints = { "localhost:6379" },
+            Password = "my_master_password"
         });
 var db = redis.GetDatabase();
 var key = "MultiClientParallel";
-int serversNumber = 200;
+int serversNumber = 2;
+Dictionary<int, RedisValue> SeekingStream = new Dictionary<int, RedisValue>();
+
 
 Parallel.For(0, serversNumber, new ParallelOptions { MaxDegreeOfParallelism = serversNumber }, async (i) => await SimulateServer(i));
 
@@ -24,12 +27,7 @@ async Task SimulateServer(int number)
             {
                 Console.WriteLine($"Read [{entries[i].Id}]: {v.Name} - {v.Value}");
             }
-        }
-        var idS = entries.Select(t => t.Id);
-        if (idS.Any())
-        {
-            position = idS.OrderBy(t => t).FirstOrDefault();
-            await db.StreamDeleteAsync(key, entries.Select(t => t.Id).ToArray());
+            await db.StreamDeleteAsync(key, new[] { entries[i].Id });
         }
     }
 }
