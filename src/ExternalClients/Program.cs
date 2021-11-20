@@ -4,8 +4,8 @@ using System.Security.Cryptography;
 IConnectionMultiplexer redis = ConnectionMultiplexer.Connect(
         new ConfigurationOptions
         {
-            //EndPoints = { "20.203.217.149:6379" }
-             EndPoints = { "localhost:6379" },
+            EndPoints = { "20.203.217.149:6379" },
+            // EndPoints = { "localhost:6379" },
             Password = "my_master_password"
         });
 
@@ -32,7 +32,7 @@ async Task SimulateClient(int number)
         });
         Console.WriteLine($"Add {i} - Thread: {Thread.CurrentThread.ManagedThreadId}");
         i++;
-        await Task.Delay(RandomNumberGenerator.GetInt32(0, 1000));
+        await Task.Delay(RandomNumberGenerator.GetInt32(0, 100));
     }
 }
 
